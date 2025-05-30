@@ -1,4 +1,4 @@
-# mcp-medium-accellerator
+# mcp-medium-accelerator
 
 ## Install
 
@@ -20,7 +20,7 @@ mcp install main.py
 ```
 {
   "mcpServers": {
-    "mcp-medium-accellerator": {
+    "mcp-medium-accelerator": {
       "command": "/opt/homebrew/bin/uv",
       "args": [
         "run",
