@@ -20,7 +20,7 @@ mcp install main.py
 ```
 {
   "mcpServers": {
-    "mcp-medium-archive-extractor": {
+    "mcp-medium-accellerator": {
       "command": "/opt/homebrew/bin/uv",
       "args": [
         "run",
@@ -28,6 +28,10 @@ mcp install main.py
         "bs4",
         "--with",
         "requests",
+        "--with",
+        "datetime",
+        "--with",
+        "tinydb",
         "--with",
         "mcp[cli]",
         "mcp",
