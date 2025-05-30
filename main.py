@@ -5,10 +5,10 @@ import os
 from tinydb import TinyDB, Query
 from datetime import datetime
 
-mcp = FastMCP("mcp-medium-accellerator")
+mcp = FastMCP("mcp-medium-accelerator")
 
 home_dir = os.path.expanduser("~")
-data_dir = os.path.join(home_dir, "mcp-medium-accellerator_data")
+data_dir = os.path.join(home_dir, "mcp-medium-accelerator_data")
 os.makedirs(data_dir, exist_ok=True)
 
 db_path = os.path.join(data_dir, "summaries.json")
