@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-import requests
+import httpx
 from bs4 import BeautifulSoup
 import os
 from tinydb import TinyDB, Query
@@ -20,7 +20,7 @@ summaries_table = db.table("summaries")
     name="extract_article_links",
 )
 def extract_article_links(archive_url: str, limit: int = 10) -> list[str]:
-    response = requests.get(archive_url)
+    response = httpx.get(archive_url)
     soup = BeautifulSoup(response.text, "html.parser")
     links = []
 
@@ -37,19 +37,6 @@ def extract_article_links(archive_url: str, limit: int = 10) -> list[str]:
                 break
 
     return links
-
-@mcp.tool(
-    description="Extracts article content from a Medium article URL. Returns the article content. Ask to the user if want to save the summary with save_summary.",
-    name="extract_article_content_to_summarize",
-)
-def extract_article_content_to_summarize(link: str) -> str:
-    response = requests.get(link)
-    soup = BeautifulSoup(response.text, "html.parser")
-    content = ""
-
-    content = soup.find("article").get_text()
-
-    return content
 
 @mcp.tool(
     description="Saves a summary of an article with its title, URL, and tags. Returns a status message.",
@@ -77,3 +64,13 @@ def save_summary(title: str, url: str, summary: str, tags: list[str] = []):
 )
 def list_summaries():
     return summaries_table.all()
+
+@mcp.tool(
+    description="Extracts the text content from a saved article summary. Ask if the user want to save it with save_summary.",
+    name="extract_article_text",
+)
+def extract_article_text(url: str):
+    response = httpx.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    article = soup.find("article")
+    return article.get_text() if article else ""

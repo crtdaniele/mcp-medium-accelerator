@@ -63,7 +63,7 @@ Tool disponibili:
 
 Estrae i link degli articoli da un URL di archivio Medium. Restituisce una lista di link agli articoli.
 
-- **extract_article_content_to_summarize:**
+- **extract_article_text:**
 
 Estrae il contenuto di un articolo da un URL di Medium. Restituisce il contenuto dell’articolo. Chiede all’utente se desidera salvare il riassunto tramite save_summary.
 
@@ -93,7 +93,7 @@ Oppure configura manualmente il file settings.json (Claude Desktop > Settings > 
         "--with",
         "bs4",
         "--with",
-        "requests",
+        "httpx",
         "--with",
         "datetime",
         "--with",
